@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+ <!-- not needed with scheduled annotation and right expression in properties file
+    <context:component-scan base-package="appdynamics.zookeeper.monitor.es.service"/>
+    <task:scheduler id="HAESScheduler" pool-size="4"/>
+ 
+    <task:scheduled-tasks scheduler="HAESScheduler">
+        <task:scheduled ref="EShealthcheckScheduler" method="scheduleTaskWithCronExpression" cron="0 * * * * ?"/>
+        <task:scheduled ref="ESSnapshotRestoreScheduler" method="scheduleSnapshotTaskWithCronExpression" cron="0 0 * * * ?"/>        
+        <task:scheduled ref="ESSnapshotRestoreScheduler" method="scheduleRestoreTaskWithCronExpression" cron="0 0 * * * ?"/>
+        <task:scheduled ref="ESSnapshotRestoreScheduler" method="scheduleFilesystemRepositoryCheckTaskWithCronExpression" cron="0 0 * * * ?"/>       
+    </task:scheduled-tasks>
+ -->
+</beans>

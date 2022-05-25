@@ -1,0 +1,79 @@
+#! /bin/bash
+# creates infrastructure of both ES clusters
+# at init phase, all clusters and nodes are not up and available
+# HAES agent will check for those and update "up" and "availability" 
+
+#setData /HAES/ES-CLUSTER1/ES-NODE1/ID xyz
+#setData /HAES/ES-CLUSTER1/ES-NODE1/etat_shard ok
+#setData /HAES/ES-CLUSTER1/ES-NODE1/status ok
+
+
+/opt/appdynamics/HAES/apache-zookeeper-3.6.1-bin/bin/zkCli.sh -server localhost:2181 <<EOF
+
+deleteall /HAES
+ 
+create /HAES
+create /HAES/ES-CLUSTER1
+create /HAES/ES-CLUSTER1/type active
+create /HAES/ES-CLUSTER1/up false
+create /HAES/ES-CLUSTER1/availability ko
+
+create /HAES/ES-CLUSTER2
+create /HAES/ES-CLUSTER2/type passive
+create /HAES/ES-CLUSTER2/up false
+create /HAES/ES-CLUSTER2/availability ko
+
+create /HAES/ES-CLUSTER1/ES-NODE1
+create /HAES/ES-CLUSTER1/ES-NODE1/ID unknown
+create /HAES/ES-CLUSTER1/ES-NODE1/shard_status ko 
+create /HAES/ES-CLUSTER1/ES-NODE1/status ko
+create /HAES/ES-CLUSTER1/ES-NODE1/ismaster false
+
+create /HAES/ES-CLUSTER1/ES-NODE2
+create /HAES/ES-CLUSTER1/ES-NODE2/ID unknown
+create /HAES/ES-CLUSTER1/ES-NODE2/shard_status ko 
+create /HAES/ES-CLUSTER1/ES-NODE2/status ko
+create /HAES/ES-CLUSTER1/ES-NODE2/ismaster false
+
+create /HAES/ES-CLUSTER1/ES-NODE3
+create /HAES/ES-CLUSTER1/ES-NODE3/ID unknown
+create /HAES/ES-CLUSTER1/ES-NODE3/shard_status ko 
+create /HAES/ES-CLUSTER1/ES-NODE3/status ko
+create /HAES/ES-CLUSTER1/ES-NODE3/ismaster false
+
+
+create /HAES/ES-CLUSTER2/ES-NODE1
+create /HAES/ES-CLUSTER2/ES-NODE1/ID unknown
+create /HAES/ES-CLUSTER2/ES-NODE1/shard_status ko 
+create /HAES/ES-CLUSTER2/ES-NODE1/status ko
+create /HAES/ES-CLUSTER2/ES-NODE1/ismaster false
+
+create /HAES/ES-CLUSTER2/ES-NODE2
+create /HAES/ES-CLUSTER2/ES-NODE2/ID unknown
+create /HAES/ES-CLUSTER2/ES-NODE2/shard_status ko 
+create /HAES/ES-CLUSTER2/ES-NODE2/status ko
+create /HAES/ES-CLUSTER2/ES-NODE2/ismaster false
+
+create /HAES/ES-CLUSTER2/ES-NODE3
+create /HAES/ES-CLUSTER2/ES-NODE3/ID unknown
+create /HAES/ES-CLUSTER2/ES-NODE3/shard_status ko 
+create /HAES/ES-CLUSTER2/ES-NODE3/status ko
+create /HAES/ES-CLUSTER2/ES-NODE3/ismaster false
+
+create /SNAPSHOT
+
+create /SNAPSHOT/status ko
+create /SNAPSHOT/ES-NODE
+create /SNAPSHOT/ES-NODE/ID xyz 
+
+create /RESTORE
+
+create /RESTORE/status ko
+create /RESTORE/ES-NODE
+create /RESTORE/ES-NODE/ID xyz 
+
+
+ls -R / 
+
+quit
+EOF
